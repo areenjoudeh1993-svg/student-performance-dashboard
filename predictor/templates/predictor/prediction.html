@@ -1,0 +1,46 @@
+{% extends 'predictor/base.html' %}
+
+{% block title %}
+Prediction
+{% endblock %}
+
+{% block content %}
+
+<h2>Student Success Prediction</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <p>
+        Studied Credits:
+        <input type="number"
+               name="studied_credits"
+               required>
+    </p>
+
+    <p>
+        Total Clicks:
+        <input type="number"
+               name="total_clicks"
+               required>
+    </p>
+
+    <p>
+        Average Score:
+        <input type="number"
+               step="0.1"
+               name="avg_score"
+               required>
+    </p>
+
+    <button type="submit">
+        Predict
+    </button>
+
+</form>
+
+{% if result %}
+    <h3>Prediction Result: {{ result }}</h3>
+{% endif %}
+
+{% endblock %}

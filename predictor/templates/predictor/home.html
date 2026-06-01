@@ -1,0 +1,43 @@
+{% extends 'predictor/base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Student Performance Dashboard</h2>
+
+<p>Total Students: {{ students }}</p>
+
+<p>Model Accuracy: {{ accuracy }}%</p>
+
+<p>Passed Students: {{ pass_count }}</p>
+
+<p>Failed Students: {{ fail_count }}</p>
+
+<canvas id="resultChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('resultChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Pass', 'Fail'],
+        datasets: [{
+            label: 'Students',
+            data: [
+                {{ pass_count }},
+                {{ fail_count }}
+            ]
+        }]
+    }
+});
+
+</script>
+
+{% endblock %}
