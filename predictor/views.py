@@ -8,25 +8,11 @@ model = joblib.load("student_model.pkl")
 
 def home(request):
 
-    df = pd.read_csv(
-        "../online_education_dataset.csv"
-    )
-
-    total_students = len(df)
-
-    pass_count = len(
-        df[df["pass_flag"] == 1]
-    )
-
-    fail_count = len(
-        df[df["pass_flag"] == 0]
-    )
-
     context = {
-        "students": total_students,
+        "students": 32593,
         "accuracy": 76.5,
-        "pass_count": pass_count,
-        "fail_count": fail_count,
+        "pass_count": 17000,
+        "fail_count": 15593,
     }
 
     return render(
